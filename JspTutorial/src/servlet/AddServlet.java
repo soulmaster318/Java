@@ -13,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import connection2.DbConnection;
 @WebServlet("/AddServlet")
 public class AddServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,7 +42,7 @@ public class AddServlet extends HttpServlet {
         u.setLastname(lastname);
         u.setCountry(country);
         u.setPhoneno(phoneno);
-        DbConnection.AddUser(u);
+        
         int status= DbConnection.AddUser(u);
         if (status>0) {
         	out.print("<p>Record saved successfully!</p>");  
@@ -50,4 +53,8 @@ public class AddServlet extends HttpServlet {
         
         out.close();
 	}
+	@Override
+    public String getServletInfo() {
+        return "Short description";
+    }
 }

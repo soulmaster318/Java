@@ -14,8 +14,8 @@ public class DbConnection {
 	public static Connection getConnection() {
 		Connection conn=null;
 		try {
-			Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
-			conn=DriverManager.getConnection("jdbc:microsoft:sqlserver://HIEPNGUYEN:1433;instance=SQL;databasename=JDBCTest","sa","3108");
+			Class.forName("com.mysql.jdbc.Driver");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/UserInfo","root","3108");
 		}
 		catch(Exception e) {
 			System.out.print(e);}
@@ -25,7 +25,7 @@ public class DbConnection {
 		int status=0;
 		try {
 			Connection conn= DbConnection.getConnection();
-			PreparedStatement pre=conn.prepareStatement("insert into UserInfo(FirstName,LastName,Country,PhoneNo) values (?,?,?,?)");
+			PreparedStatement pre=conn.prepareStatement("insert into UserInfo(firstname,lastname,country,phoneno) values (?,?,?,?)");
 			pre.setString(1,u.getFirstname());
 			pre.setString(2,u.getLastname());
 			pre.setString(3,u.getCountry());
